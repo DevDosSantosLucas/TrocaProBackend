@@ -31,7 +31,7 @@ class TrySwapController {
     }
 
     const item = await swapRepository.findOne({ where: { item_id,targed_item_id} }  );
-    if(item) return response.status(201).json("TENTATIVA DE TROCA PARA ESTE PRODUTO JÁ FOI REALIZADA! \n POR FAVOR AGUARDE ! ");
+    if(item) return response.status(201).json("JÁ CLICOU AQUI ! \n POR FAVOR AGUARDE ! ");
 
     const newSwap = swapRepository.create(swap);
     
@@ -44,14 +44,16 @@ class TrySwapController {
         'targed_item_id':item_id,
     }] });
     if( targedItem){
-        console.log('FULANO TAMBÉM SE INTERESSOU PELO SEU PRODUTO. QUE TAL FINALIZAR UMA TROCA?')
+        console.log('OTIMO!\n VÁ PARA ABA DE NEGOCIAÇÕES PARA FINALIZEM A TROCA')
+    return response.status(201).json('OTIMO!\n VÁ PARA ABA DE NEGOCIAÇÕES PARA FINALIZEM A TROCA');
+
     } 
 
     console.log(swap)
     console.log(newSwap)
 
     
-    return response.status(201).json("TENTATIVA DE TROCA REALIZA COM SUCESSO!\n AGUARDE ! ");
+    return response.status(201).json("TENTATIVA EM PROCESSO!\n AGUARDE ! ");
     // return response.status(201).json(newSwap);
 
   }
@@ -59,25 +61,59 @@ class TrySwapController {
     async showSwap(request: Request, response: Response){
     
             const { item_id,targed_item_id} = request.params;
+            // const [isMatch,setMatch] = useState(false);
+            var isMatch=false;
+
             const swapRepository =getRepository(Swap);
     
       
-              const items = await swapRepository.findOne({ 
-                relations: [   "item_id", "targed_item_id",
-                       "item_id.images" , "targed_item_id.images",
-                       "item_id.user", "targed_item_id.user"] ,
-                where:[{
-                        'item_id':targed_item_id,
-                        'targed_item_id':item_id,
-                      }]     
+            const item = await swapRepository.find({ 
+              relations: [   "item_id", "targed_item_id",
+                     "item_id.images" , "targed_item_id.images",
+                        "item_id.user", "targed_item_id.user"] ,
+                where:{
+                       targed_item_id,
+                       item_id,
+                      }  
                 }
                 
                );
-              console.log(items)
-                
-            // return response.status(200).json(SwapView.render(items));
-            return response.status(201).json(items);
+              console.log(item)
+              if(!item){
+               return response.status(200).json("NADA ENCONTRADO!");
+
+              }
+            return response.status(200).json(SwapView.renderMany(item));
+            }
+             
             
+    async showMatchSwap(request: Request, response: Response){
+    
+              const { item_id,targed_item_id} = request.params;
+              var isMatch =true
+  
+              const swapRepository =getRepository(Swap); 
+               const itemMatch = await swapRepository.find({
+                  where:{
+                         'targed_item_id':item_id,
+                         'item_id':targed_item_id
+                        }  
+                  }
+                 
+                  
+                 );
+                 console.log(itemMatch.length)
+                 if(itemMatch.length ===0  ){
+                   
+                   isMatch =false;
+                   console.log("in:",isMatch)
+                  return response.status(200).json(isMatch);   
+
+                 }
+                 console.log("out:",isMatch)
+               
+                
+            return response.status(200).json(isMatch);   
 
     }
 

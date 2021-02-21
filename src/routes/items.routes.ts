@@ -30,6 +30,8 @@ import JWT from "../middleware/JWT";
           .post('/tryswap',TrySwapController.trySwap)//,JWT)
           // .get('/showSwap/:item_id',TrySwapController.showSwap)//,JWT)
           .get('/showSwap/:item_id/:targed_item_id',TrySwapController.showSwap)//,JWT)
+          .get('/showMatchSwap/:item_id/:targed_item_id',TrySwapController.showMatchSwap)//,JWT)
+
           .get('/showSwapUser/:user_id',TrySwapController.showSwapUser)//,JWT)
 
 
