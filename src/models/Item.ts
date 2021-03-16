@@ -14,7 +14,7 @@ export default class Item {
 
 
   @Column()
-  price: number;
+  price: string;
 
   @Column()
   description: string;

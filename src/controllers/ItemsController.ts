@@ -7,6 +7,21 @@ import ItemsView from '../views/ItemView';
 
 export default {
 
+  async showAllItemsCity(request: Request, response: Response){
+    const itemsRepository = getRepository(Item);
+    const { user_id ,city} = request.params;
+    const items = await itemsRepository.find({
+      relations: ['images','user']
+      ,where: { 'user.city':city,
+         user_id: Not(user_id)}//Não mostrar items do usuario logado!
+      });
+    
+    console.log(items)
+    // return response.status(200).json(ItemsView.renderMany(items));
+    return response.status(200).json(items);
+
+  },
+
   async showAllItemsMinesUsers(request: Request, response: Response){
     const itemsRepository = getRepository(Item);
     const { user_id } = request.params;
@@ -24,10 +39,13 @@ export default {
 
   async showPrices(request: Request, response: Response){
     const itemsRepository = getRepository(Item);
-    const { user_id,price } = request.params;
+    // const { user_id } = request.params;
+    const {price,user_id,city} = request.params;
+
     const items = await itemsRepository.find({
       relations: ['images','user']
       ,where: { price,
+        // user.city,
          user_id: Not(user_id)}
       });
     
@@ -103,7 +121,7 @@ export default {
 
     const schema = Yup.object().shape({
       name_item: Yup.string().required(),
-      price: Yup.number().required().integer(),
+      price: Yup.string().required(),
       description: Yup.string().required().max(300),
       category: Yup.string().required(),
       images: Yup.array(

@@ -22,7 +22,7 @@ export class CreateItemTable1609646540494 implements MigrationInterface {
           },
           {
             name: 'price',
-            type: 'decimal',
+            type: 'varchar',
           },
           {
             name: 'category',

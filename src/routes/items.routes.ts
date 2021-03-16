@@ -14,10 +14,12 @@ import JWT from "../middleware/JWT";
     
 
     routes.get('/index/:item_id',  ItemController.index)//,JWT)
-          .get('/show/',  ItemController.show)//,JWT)
+          .get('/show',  ItemController.show)//,JWT)
 
-          .get('/showPrices/:user_id/:price',  ItemController.showPrices)//,JWT)showAllItemsMinesUsers
+          // .get('/showPrices',  ItemController.showPrices)//,JWT)
+          .get('/showPrices/:user_id/:price',  ItemController.showPrices)//,JWT)
           .get('/showAllItemsMinesUsers/:user_id',  ItemController.showAllItemsMinesUsers)//,JWT)showAllItemsMinesUsers
+          .get('/showAllItemsCity/:user_id/:city',  ItemController.showAllItemsCity)//,JWT)showAllItemsMinesUsers
 
 
           .get('/showUserToItem/:user_id',  ItemController.showUserToItem)//,JWT)
