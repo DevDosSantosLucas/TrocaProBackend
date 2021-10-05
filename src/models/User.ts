@@ -5,6 +5,7 @@ import { Entity, Column, PrimaryGeneratedColumn,
 
 
 import Item from './Item'
+import Image from './Image';
 
 @Entity('users')
 export default class User {
@@ -23,12 +24,18 @@ export default class User {
   @Column()
   uf: string;
 
+  // @PrimaryGeneratedColumn('increment')
+  // avatar_id: number;
+  // @Column()
+  // path:string;
+  
   @Column()
-  avatar: string;
+  avatar:string;
 
   @Column()
   password: string;
 
+  
 
   @OneToOne(type=>Item, user=>User)
   @JoinColumn({name:'user_id'})
