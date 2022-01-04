@@ -1,26 +1,25 @@
 module.exports = {
-  
-  "type": "postgres",
-  "url": process.env.DATABASE_URL ,
+  // synchronize: true, // Tem que usar ?
+  type: 'postgres',
+  // "url": process.env.DATABASE_URL ,
+  // "url":DATABASE_URL_ELEPHANTSQL,
+  url: 'postgres://lebniwyn:Wk_J1nHt34_rDLUiX7UtzySDTsX9DJjf@fanny.db.elephantsql.com/lebniwyn',
 
-    "migrations": [
-      "./dist/database/migrations/*.js"
-      // "./src/database/migrations/*.ts"
-
-    ], 
-
-  "entities":[
-    "./dist/models/*.js"
-
-    // "./src/models/*.ts"
+  migrations: [
+    // "./dist/database/migrations/*.js"
+    './src/database/migrations/*.ts'
   ],
-  "cli": {
-    "migrationsDir": "./src/database/migrations"
+
+  entities: [
+    // "./dist/models/*.js"
+    // "./src/database/migrations/*.ts"
+
+    './src/models/*.ts'
+  ],
+  cli: {
+    migrationsDir: './src/database/migrations'
   }
 }
-
-
-
 
 // "host": "localhost",
 // "port": 5432,

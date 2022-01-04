@@ -11,7 +11,10 @@ export default {
       // whatsapp: `https://api.whatsapp.com/send?phone=${user.whatsapp}`,
       whatsapp: user.whatsapp,
 
-      avatar: `http://localhost:3333/uploads/${user.avatar}`,
+      // avatar: `http://192.168.15.7:3333/uploads/${user.avatar}`,
+      // avatar: `http://192.168.15.10:3333/uploads/1.png`,
+      avatar: user.avatar
+
     };
   },
 

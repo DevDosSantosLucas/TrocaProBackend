@@ -67,7 +67,7 @@ async create(request: Request, response: Response){
     UsersRepository.create(user);
  
     await UsersRepository.save(user);
-    
+    console.log("create:",UsersRepository)
     return response.status(201).json({user});
     },
   

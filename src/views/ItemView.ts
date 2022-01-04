@@ -13,7 +13,7 @@ export default {
       category: item.category,
       user_id: item.user_id, 
       images: imagesView.renderMany(item.images),
-      user: userView.render(item.user)
+      user_info: userView.render(item.user_info)
     };
   },
   

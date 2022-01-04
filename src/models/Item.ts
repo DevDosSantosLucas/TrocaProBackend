@@ -26,10 +26,10 @@ export default class Item {
   user_id: string;
 
   @OneToOne(type=> User,item=> Item)
-  @JoinColumn({name: 'user'}) 
-  // @JoinColumn({name: 'user_id'})  
+  // @JoinColumn({name: 'user_info'}) 
+  @JoinColumn({name: 'user_info'})  
   // user_id: User;
-  user: User;
+  user_info: User;
 
 
   @OneToOne(type=>Swap, item =>Item)

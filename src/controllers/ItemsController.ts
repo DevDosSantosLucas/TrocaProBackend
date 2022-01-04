@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { getRepository, Not } from 'typeorm';
 import * as Yup from 'yup';
 
+// import Item from '../models/Item';
 import Item from '../models/Item';
 import ItemsView from '../views/ItemView';
 
@@ -11,12 +12,14 @@ export default {
     const itemsRepository = getRepository(Item);
     const { user_id ,city} = request.params;
     const items = await itemsRepository.find({
-      relations: ['images','user']
-      ,where: { 'user.city':city,
+      relations: ['images','user_info']
+      // ,where: { "user_info.city" :city ,
+      ,where: { user_info:{city} , //PERTO DISSO   
          user_id: Not(user_id)}//Não mostrar items do usuario logado!
       });
+
     
-    console.log(items)
+    console.log(city,items)
     // return response.status(200).json(ItemsView.renderMany(items));
     return response.status(200).json(items);
 
@@ -25,15 +28,16 @@ export default {
   async showAllItemsMinesUsers(request: Request, response: Response){
     const itemsRepository = getRepository(Item);
     const { user_id } = request.params;
+    console.log(user_id)
     const items = await itemsRepository.find({
-      relations: ['images','user']
+      relations: ['images','user_info']
       ,where: { 
          user_id: Not(user_id)}
       });
     
     console.log(items)
-    // return response.status(200).json(ItemsView.renderMany(items));
-    return response.status(200).json(items);
+    return response.status(200).json(ItemsView.renderMany(items));
+    // return response.status(200).json(items);
 
   },
 
@@ -43,7 +47,7 @@ export default {
     const {price,user_id,city} = request.params;
 
     const items = await itemsRepository.find({
-      relations: ['images','user']
+      relations: ['images','user_info']
       ,where: { price,
         // user.city,
          user_id: Not(user_id)}
@@ -61,7 +65,7 @@ export default {
     const items = await itemsRepository.find({
       // relations: ['images','user_id']//relacionar para mostrar usuario
       // relations: ['images','user']//relacionar para mostrar usuario
-      relations: ['images','user']//relacionar para mostrar usuario
+      relations: ['images','user_info']//relacionar para mostrar usuario
     ,where: {
       user_id}
     });
@@ -72,9 +76,9 @@ export default {
   },
   async show(request: Request, response: Response){
     const itemsRepository = getRepository(Item);
-    
+    console.log(itemsRepository)
     const items = await itemsRepository.find({
-      relations: ['images','user']//relacionar para mostrar usuario
+      relations: ['images','users']//relacionar para mostrar usuario
     });
     console.log(items)
     return response.status(200).json(ItemsView.renderMany(items));
@@ -87,7 +91,7 @@ export default {
     const itemsRepository = getRepository(Item);
 
     const item = await itemsRepository.findOneOrFail( item_id, {
-      relations: ['images','user']
+      relations: ['images','users']
     } );
     
     console.log(item)
@@ -116,7 +120,7 @@ export default {
         category,
         images,   
         user_id,
-        user:user_id,
+        user_info:user_id,
         }
 
     const schema = Yup.object().shape({
@@ -139,6 +143,7 @@ export default {
     const newItem = itemsRepository.create(item);
   
     await itemsRepository.save(item);
+    console.log(response, item,newItem)
     
     return response.status(201).json(newItem);
   }

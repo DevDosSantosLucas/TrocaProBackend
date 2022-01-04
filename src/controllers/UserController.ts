@@ -18,7 +18,7 @@ import { string } from 'yup/lib/locale';
 
 class UserController{ 
 
-async show(request: Request, response: Response){
+  async show(request: Request, response: Response){
   const { user_id } = request.params;
   const usersRepository = getRepository(User);
 
@@ -27,10 +27,12 @@ async show(request: Request, response: Response){
   return response.status(200).json(userView.render(user));
   // return response.status(200).json(user);
 
-}
+  }
 
-async create(request: Request, response: Response){
+  async create(request: Request, response: Response){
     const {user_id, name, password, city, uf, whatsapp ,passwordConfirmation} = request.body;
+    console.log("Teste:",user_id, name, password, city, uf, whatsapp ,passwordConfirmation);
+
 
     const UsersRepository =getRepository(User);
     
@@ -80,17 +82,25 @@ async create(request: Request, response: Response){
     await UsersRepository.save(createdUser);
     console.log(createdUser)
     return response.status(201).json(createdUser);
-    }
+  }
+
   
-async auth(request: Request, response: Response){
+  async auth(request: Request, response: Response){
+  
       const { whatsapp, password } = request.body;
+    // const  whatsapp  = await request.body.whatsapp;
+    // const  password = await request.body.password;
+
+
+      console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",whatsapp,password)
 
       const usersRepository = getRepository(User);
       const users = await usersRepository.find({where:{whatsapp} });
-      
+      console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",users)
           
           if(users.length ===1){
           if(await bcrypt.compare(password,users[0].password)){
+            console.log("bcrypt")
 
             //fazer criptografia
       const token = jwt.sign({id: users[0].user_id},
@@ -119,5 +129,7 @@ async auth(request: Request, response: Response){
     } 
   
   }
+
+
 }
 export default new  UserController();

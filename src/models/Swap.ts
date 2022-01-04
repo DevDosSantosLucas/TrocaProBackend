@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn,  JoinColumn, OneToOne } from 't
 
 import Item from './Item';
 
-@Entity('swaps')
+@Entity('swap')
 export default class Swap {
 
   @PrimaryGeneratedColumn('uuid')

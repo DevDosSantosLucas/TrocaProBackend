@@ -17,6 +17,7 @@ import ItemController from"./items.routes"
     routes.use('/uploads', express.static(path.join(__dirname, '..','..', 'uploads')));
 
     routes
-        .post('/signup',upload.single('avatar'), UserController.create)
-        .post("/session", UserController.auth)
+        // .post('/signup',upload.single('avatar'), UserController.create)
+        .post('/signup', UserController.create)
+        .post('/session', UserController.auth)
 export default routes;

@@ -70,7 +70,7 @@ class TrySwapController {
             const item = await swapRepository.find({ 
               relations: [   "item_id", "targed_item_id",
                      "item_id.images" , "targed_item_id.images",
-                        "item_id.user", "targed_item_id.user"] ,
+                        "item_id.user_info", "targed_item_id.user_info"] ,
                 where:{
                        targed_item_id,
                        item_id,
@@ -83,7 +83,9 @@ class TrySwapController {
                return response.status(200).json("NADA ENCONTRADO!");
 
               }
-            return response.status(200).json(SwapView.renderMany(item));
+            // return response.status(200).json(SwapView.renderMany(item));
+            return response.status(200).json(item);
+
             }
              
             
@@ -127,7 +129,7 @@ class TrySwapController {
         const items = await swapRepository.find({ 
           relations: [   "item_id", "targed_item_id",
                  "item_id.images" , "targed_item_id.images",
-                    "item_id.user", "targed_item_id.user"] ,
+                    "item_id.user_info", "targed_item_id.user_info"] ,
           where: {user_id} 
           }
           
@@ -140,10 +142,6 @@ class TrySwapController {
    
       // return response.status(200).json(items);
       return response.status(200).json(SwapView.renderMany(items));
-
-
-      
-
     }
 }
 
