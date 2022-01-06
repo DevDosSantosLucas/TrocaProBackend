@@ -1,5 +1,7 @@
 module.exports = {
   // synchronize: true, // Tem que usar ?
+  synchronize: true,
+
   type: 'postgres',
   // url: process.env.DATABASE_URL_ELEPHANTSQL,
   // "url":DATABASE_URL_ELEPHANTSQL,
