@@ -1,3 +1,6 @@
+const migrationsPath =
+  './dist/database/migrations' || './src/database/migrations'
+
 module.exports = {
   // synchronize: true, // Tem que usar ?
   synchronize: true,
@@ -20,7 +23,9 @@ module.exports = {
   ],
   cli: {
     // migrationsDir: './src/database/migrations'
-    migrationsDir: './dist/database/migrations'
+    migrationsDir: migrationsPath
+
+    // migrationsDir: './dist/database/migrations'
   }
 }
 
