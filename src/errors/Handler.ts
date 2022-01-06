@@ -15,14 +15,14 @@ const errorHandler: ErrorRequestHandler = (error:ErrorRequestHandler, request:Re
   if (error instanceof ValidationError){
     let errors: ValidationErrors ={};
 
-    error.inner.forEach(err => {
-      try{
-      errors[err.path] = err.errors;
-      }catch(error){
-        console.log(error)
-      }
+    // error.inner.forEach(err => {
+    //   try{
+    //   errors[err.path] = err.errors;
+    //   }catch(error){
+    //     console.log(error)
+    //   }
     
-    });
+    // });
 
     return response.status(400).json({message: 'Validations fails', errors});
   }

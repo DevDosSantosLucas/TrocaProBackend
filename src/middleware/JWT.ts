@@ -4,7 +4,9 @@ import * as jwt from 'jsonwebtoken';
 
 
 import authConfig from '../config/authConfig';
-import AppError from "../errors/Handler";
+// import AppError from "../errors/Handler";
+// import AppError from '../errors/Handler'
+
 
 export default function JWT(
     request: Request,

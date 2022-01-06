@@ -1,9 +1,9 @@
 module.exports = {
   // synchronize: true, // Tem que usar ?
   type: 'postgres',
-  // "url": process.env.DATABASE_URL ,
+  url: process.env.DATABASE_URL_ELEPHANTSQL,
   // "url":DATABASE_URL_ELEPHANTSQL,
-  url: 'postgres://lebniwyn:Wk_J1nHt34_rDLUiX7UtzySDTsX9DJjf@fanny.db.elephantsql.com/lebniwyn',
+  // url: 'postgres://lebniwyn:Wk_J1nHt34_rDLUiX7UtzySDTsX9DJjf@fanny.db.elephantsql.com/lebniwyn',
 
   migrations: [
     // "./dist/database/migrations/*.js"
