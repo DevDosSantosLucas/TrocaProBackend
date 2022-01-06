@@ -15,6 +15,7 @@ var User_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const Item_1 = __importDefault(require("./Item"));
+// import Image from './Image';
 let User = User_1 = class User {
 };
 __decorate([

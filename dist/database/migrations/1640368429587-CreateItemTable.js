@@ -30,7 +30,8 @@ class CreateItemTable1640368429587 {
                 },
                 {
                     name: 'description',
-                    type: 'text'
+                    // type: 'text'
+                    type: 'varchar'
                 },
                 {
                     name: 'user_id',

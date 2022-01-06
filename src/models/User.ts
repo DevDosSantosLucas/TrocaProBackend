@@ -1,11 +1,10 @@
 import { Entity, Column, PrimaryGeneratedColumn, 
-         OneToOne, JoinColumn ,
-        } from 'typeorm';
+         OneToOne, JoinColumn}from 'typeorm';
 
 
 
 import Item from './Item'
-import Image from './Image';
+// import Image from './Image';
 
 @Entity('users')
 export default class User {

@@ -31,7 +31,8 @@ await queryRunner.createTable(new Table({
     },
     {
       name: 'description',
-      type: 'text'
+      // type: 'text'
+      type: 'varchar'
     },
     {
       name: 'user_id',
