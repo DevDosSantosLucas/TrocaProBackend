@@ -19,7 +19,8 @@ module.exports = {
     './src/models/*.ts'
   ],
   cli: {
-    migrationsDir: './src/database/migrations'
+    // migrationsDir: './src/database/migrations'
+    migrationsDir: './dist/database/migrations'
   }
 }
 
