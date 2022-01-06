@@ -24,8 +24,8 @@ class UserController{
 
   const user = await usersRepository.findOneOrFail( {where:{user_id}});
   console.log(user)
-  return response.status(200).json(userView.render(user));
-  // return response.status(200).json(user);
+  // return response.status(200).json(userView.render(user));
+  return response.status(200).json(user);
 
   }
 
