@@ -11,6 +11,9 @@ import ItemController from"./items.routes"
 
     const routes = express.Router();/////
     const upload = multer(uploadConfig);
+    routes.use("/", function(req,res){
+        res.send("Backend em produção!")
+    });
 
     routes.use("/auth", UserControllerJwt);
     routes.use("/items",ItemController)
