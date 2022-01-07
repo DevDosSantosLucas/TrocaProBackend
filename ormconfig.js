@@ -1,5 +1,5 @@
-const migrationsPath =
-  './dist/database/migrations' || './src/database/migrations'
+const migrationsPath = './dist/database/migrations'
+// || './src/database/migrations'
 
 module.exports = {
   // synchronize: true, // Tem que usar ?
@@ -9,7 +9,9 @@ module.exports = {
   // url: process.env.DATABASE_URL_ELEPHANTSQL,
   // "url":DATABASE_URL_ELEPHANTSQL,
   url: 'postgres://lebniwyn:Wk_J1nHt34_rDLUiX7UtzySDTsX9DJjf@fanny.db.elephantsql.com/lebniwyn',
-
+  // server: 'fanny.db.elephantsql.com',
+  // database: 'lebniwyn',
+  // password: 'Wk_J1nHt34_rDLUiX7UtzySDTsX9DJjf',
   migrations: [
     './dist/database/migrations/*.js'
     // './src/database/migrations/*.ts'
