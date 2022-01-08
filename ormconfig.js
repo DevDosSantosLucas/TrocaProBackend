@@ -3,7 +3,7 @@ const migrationsPath = './dist/database/migrations'
 
 module.exports = {
   // synchronize: true, // Tem que usar ?
-  synchronize: true,
+  synchronize: false,
 
   type: 'postgres',
   // url: process.env.DATABASE_URL_ELEPHANTSQL,
